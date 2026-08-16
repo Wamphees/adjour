@@ -1,5 +1,6 @@
+import React, { useState } from "react"
 import { Link } from "react-router"
-import type { Route } from "./+types/home";
+import type { Route } from "./+types/home"
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -9,424 +10,576 @@ export function meta({}: Route.MetaArgs) {
       content:
         "ADJOUR : expédiez vos colis, réservez vos vols et gérez vos finances avec la plateforme logistique et financière la plus fiable du Cameroun.",
     },
-    { property: "og:title", content: "ADJOUR | Services Logistiques et Financiers" },
+    {
+      property: "og:title",
+      content: "ADJOUR | Services Logistiques et Financiers",
+    },
     {
       property: "og:description",
       content:
         "Tous vos services logistiques et financiers en un clic. La technologie au service de votre mobilité au Cameroun.",
     },
-  ];
+  ]
 }
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false)
   return (
-
-    <div>
-      <div>
-            <div className="bg-background text-on-surface font-body-lg">
-      {/* Top Navigation Bar */}
-      <header className="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-outline-variant">
-        <div className="flex justify-between items-center w-full px-margin-desktop max-w-max-width mx-auto h-20">
-          {/* Brand Logo */}
-          <Link to="/" className="text-headline-md font-headline-md font-bold text-primary">
-            ADJOUR
-          </Link>
-          {/* Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8">
-            <Link
-              className="text-primary border-b-2 border-primary font-bold pb-1 font-label-caps text-label-caps"
-              to="/"
-            >
-              Home
-            </Link>
-            <Link
-              className="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps"
-              to="/vehicles"
-            >
-              Location
-            </Link>
-            <a
-              className="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps"
-              href="#"
-            >
-              Support
-            </a>
-            <Link
-              className="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps"
-              to="/portal"
-            >
-              Dashboard
-            </Link>
-          </nav>
-          {/* Actions */}
-          <div className="flex items-center gap-4">
-            <Link to="/auth" className="px-4 py-2 text-primary font-body-sm text-body-sm hover:opacity-80 transition-opacity">
-              Sign In
-            </Link>
-            <button className="px-6 py-2 bg-secondary-container text-on-secondary-container font-bold rounded-lg hover:brightness-110 active:scale-95 transition-all shadow-sm">
-              Create Account
-            </button>
-          </div>
-        </div>
-      </header>
-      <main className="pt-20">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden bg-surface-container-low py-20 lg:py-32">
-          <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
-            {/* Abstract Background Pattern using CSS Gradients */}
-            <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[100%] rounded-full bg-primary-container blur-[120px]"></div>
-            <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[80%] rounded-full bg-secondary-container blur-[100px]"></div>
-          </div>
-          <div className="relative z-10 max-w-max-width mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-gutter-md items-center">
-            <div className="space-y-6">
-              <span className="inline-block px-3 py-1 rounded-full bg-primary-container/10 text-primary font-label-caps text-label-caps">
-                LOGISTIQUE &amp; FINANCE AU CAMEROUN
-              </span>
-              <h1 className="font-headline-lg text-headline-lg lg:text-[56px] lg:leading-[64px] text-primary">
-                Tous vos services en un clic
-              </h1>
-              <p className="text-on-surface-variant font-body-lg text-body-lg max-w-lg">
-                Expédiez vos colis, réservez vos vols et gérez vos finances avec la plateforme la plus fiable. La
-                technologie au service de votre mobilité.
-              </p>
-              <div className="flex flex-wrap gap-4 pt-4">
+    <div className="">
+      <div className="">
+        <div className="text-on-surface font-body-lg bg-background">
+          {/* Top Navigation Bar */}
+          <header className="glass-nav border-outline-variant fixed top-0 right-0 left-0 z-50 border-b bg-white/60 backdrop-blur-sm">
+            <div className="px-margin-desktop max-w-max-width mx-auto flex h-20 w-full items-center justify-between">
+              {/* Brand Logo */}
+              <Link
+                to="/"
+                className="text-headline-md font-headline-md font-bold text-primary"
+              >
+                ADJOUR
+              </Link>
+              {/* Mobile menu button */}
+              <button
+                className="md:hidden ml-4 rounded-lg p-2 text-on-surface-variant hover:bg-primary/5"
+                aria-label="Open menu"
+                onClick={() => setMenuOpen(!menuOpen)}
+              >
+                <span className="material-symbols-outlined">menu</span>
+              </button>
+              {/* Navigation Links */}
+              <nav className="hidden items-center gap-8 md:flex">
                 <Link
-                  to="/shipments/new"
-                  className="px-8 py-4 bg-primary text-on-primary font-bold rounded-xl shadow-lg hover:brightness-110 hover:-translate-y-1 transition-all flex items-center gap-2"
+                  className="font-label-caps text-label-caps border-b-2 border-primary pb-1 font-bold text-primary"
+                  to="/"
                 >
-                  <span className="material-symbols-outlined">local_shipping</span>Expédier un colis
+                  Home
                 </Link>
+                <Link
+                  className="text-on-surface-variant font-label-caps text-label-caps transition-colors hover:text-primary"
+                  to="/vehicles"
+                >
+                  Location
+                </Link>
+                <a
+                  className="text-on-surface-variant font-label-caps text-label-caps transition-colors hover:text-primary"
+                  href="#"
+                >
+                  Support
+                </a>
+                <Link
+                  className="text-on-surface-variant font-label-caps text-label-caps transition-colors hover:text-primary"
+                  to="/portal"
+                >
+                  Dashboard
+                </Link>
+              </nav>
+              {/* Mobile navigation (dropdown) */}
+              <nav
+                className={`md:hidden absolute top-full left-0 right-0 z-40 mt-2 w-full bg-white shadow-lg border-t border-outline-variant transition-transform ${
+                  menuOpen ? "block" : "hidden"
+                }`}
+                aria-hidden={!menuOpen}
+              >
+                <div className="px-margin-desktop max-w-max-width mx-auto flex flex-col gap-2 py-4">
+                  <Link to="/" className="py-2 font-bold text-primary">
+                    Home
+                  </Link>
+                  <Link to="/vehicles" className="py-2 text-on-surface-variant">
+                    Location
+                  </Link>
+                  <a className="py-2 text-on-surface-variant" href="#">
+                    Support
+                  </a>
+                  <Link to="/portal" className="py-2 text-on-surface-variant">
+                    Dashboard
+                  </Link>
+                </div>
+              </nav>
+              {/* Actions */}
+              <div className="flex items-center gap-4">
+                <Link
+                  to="/auth"
+                  className="font-body-sm text-body-sm px-4 py-2 text-primary transition-opacity hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-primary/20 rounded"
+                >
+                  Sign In
+                </Link>
+                <button className="bg-secondary-container text-on-secondary-container rounded-lg px-6 py-2 font-bold shadow-sm transition-all hover:brightness-110 active:scale-95">
+                  Create Account
+                </button>
+              </div>
+            </div>
+          </header>
+          <main className="pt-24">
+            {/* Hero Section */}
+            <section className="bg-surface-container-low relative overflow-hidden py-20 lg:py-32">
+              <div className="pointer-events-none absolute inset-0 z-0 opacity-10">
+                {/* Abstract Background Pattern using CSS Gradients */}
+                <div className="bg-primary-container absolute top-[-10%] right-[-10%] h-[100%] w-[50%] rounded-full blur-[120px]"></div>
+                <div className="bg-secondary-container absolute bottom-[-10%] left-[-10%] h-[80%] w-[40%] rounded-full blur-[100px]"></div>
+              </div>
+              <div className="max-w-max-width px-margin-desktop gap-gutter-md relative z-10 mx-auto grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
+                <div className="space-y-6 text-center lg:text-left">
+                  <span className="bg-primary-container/10 font-label-caps text-label-caps inline-block rounded-full px-3 py-1 text-primary">
+                    LOGISTIQUE &amp; FINANCE AU CAMEROUN
+                  </span>
+                  <h1 className="font-headline-lg text-headline-lg text-primary lg:text-[56px] lg:leading-[64px]">
+                    Tous vos services en un clic
+                  </h1>
+                  <p className="text-on-surface-variant font-body-lg text-body-lg max-w-lg">
+                    Expédiez vos colis, réservez vos vols et gérez vos finances
+                    avec la plateforme la plus fiable. La technologie au service
+                    de votre mobilité.
+                  </p>
+                  <div className="flex flex-wrap gap-4 pt-4 justify-center lg:justify-start">
+                    <Link
+                      to="/shipments/new"
+                      className="text-on-primary flex items-center gap-2 rounded-xl bg-primary px-6 py-3 font-bold shadow-lg transition-transform hover:-translate-y-0.5 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                    >
+                      <span className="material-symbols-outlined">local_shipping</span>
+                      Expédier un colis
+                    </Link>
+                    <Link
+                      to="/"
+                      className="flex items-center gap-2 rounded-xl border-2 border-primary bg-white px-6 py-3 font-bold text-primary transition-colors hover:bg-primary/5 focus:outline-none focus:ring-2 focus:ring-primary/10"
+                    >
+                      <span className="material-symbols-outlined">track_changes</span>
+                      Suivre un colis
+                    </Link>
+                  </div>
+                </div>
+                <div className="relative hidden lg:block">
+                  <div className="animate-float aspect-square w-full overflow-hidden rounded-3xl shadow-2xl">
+                    <img
+                      className="h-full w-full object-cover"
+                      alt="Illustration numérique moderne et professionnelle présentant un réseau logistique fluide à travers le Cameroun, avec avions cargo, camions de livraison bleu profond et flux de données lumineux reliant les grandes villes."
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvr5AaJA8hZb_LWQbWzcdVQmktB7BmJQm6NEq0RXrtEob0QNuFFwFYnraP5bgYCZ7vheHXPeuKcDb4d9A1q9AbTOR0xkOqvinaphWEzdbqumpEXamgtre1foTVAIJuAvq4iXwuD59jSAfNww21Qe2BrYcfksOIleOzVKmujK8dl8P4BOMrKSnu0OmB-M0bdK0honX_c01zzJeb9c6F4efVBfZS8MtK4-WBRRR9UyajByPEEFEQZtpp"
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
+            {/* Quick Tracking Bar */}
+            <section className="px-margin-desktop relative z-20 -mt-12">
+              <div className="border-outline-variant mx-auto max-w-4xl rounded-2xl border bg-white p-4 shadow-xl md:p-6">
+                <div className="flex flex-col items-stretch gap-4 md:flex-row">
+                  <div className="relative flex-1">
+                    <span className="material-symbols-outlined text-outline absolute top-1/2 left-4 -translate-y-1/2">
+                      search
+                    </span>
+                    <input
+                      className="border-outline-variant font-body-lg text-body-lg w-full rounded-xl border py-4 pr-4 pl-12 transition-all outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                      placeholder="Entrez votre numéro de suivi (ex: ADJ-88293-CM)"
+                      type="text"
+                      aria-label="Numéro de suivi"
+                    />
+                  </div>
+                  <button className="bg-tertiary hover:bg-tertiary-container rounded-xl px-8 py-3 font-bold text-white shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-tertiary/30">
+                    Suivre maintenant
+                  </button>
+                </div>
+                <p className="font-body-sm text-body-sm text-on-surface-variant mt-3 text-center md:text-left">
+                  Suivez vos expéditions nationales et internationales en temps
+                  réel.
+                </p>
+              </div>
+            </section>
+            {/* Services Bento Grid */}
+            <section className="max-w-max-width px-margin-desktop mx-auto py-24">
+              <div className="mb-16 text-center">
+                <h2 className="font-headline-lg text-headline-lg mb-4 text-primary">
+                  Nos Services Premium
+                </h2>
+                <p className="text-on-surface-variant font-body-lg text-body-lg mx-auto max-w-2xl">
+                  Une suite complète de solutions logistiques et financières
+                  adaptées aux besoins des particuliers et des entreprises.
+                </p>
+              </div>
+              <div className="gap-gutter-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                {/* Shipping Card */}
+                <div className="bg-surface card-shadow hover-lift border-outline-variant flex flex-col items-start gap-6 rounded-2xl border p-8 min-h-[260px]">
+                  <div className="bg-primary-container/10 flex h-16 w-16 items-center justify-center rounded-xl text-primary">
+                    <span className="material-symbols-outlined text-[32px]">
+                      local_shipping
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-headline-sm text-headline-sm text-on-surface mb-2">
+                      Shipping
+                    </h3>
+                    <p className="font-body-sm text-body-sm text-on-surface-variant">
+                      Expédition de colis sécurisée, locale et internationale
+                      avec suivi de bout en bout.
+                    </p>
+                  </div>
+                  <Link
+                    className="mt-auto inline-flex items-center gap-1 font-bold text-primary transition-all hover:gap-2 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                    to="/shipments/new"
+                  >
+                    En savoir plus
+                    <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                  </Link>
+                </div>
+                {/* Flights Card */}
+                <div className="bg-surface card-shadow hover-lift border-outline-variant flex flex-col items-start gap-6 rounded-2xl border p-8 min-h-[260px]">
+                  <div className="bg-secondary-container/10 flex h-16 w-16 items-center justify-center rounded-xl text-secondary">
+                    <span className="material-symbols-outlined text-[32px]">
+                      flight
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-headline-sm text-headline-sm text-on-surface mb-2">
+                      Travel
+                    </h3>
+                    <p className="font-body-sm text-body-sm text-on-surface-variant">
+                      Réservation de billets d'avion aux meilleurs tarifs pour
+                      vos déplacements pro ou perso.
+                    </p>
+                  </div>
+                  <a
+                    className="mt-auto inline-flex items-center gap-1 font-bold text-primary transition-all hover:gap-2 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                    href="#"
+                  >
+                    En savoir plus
+                    <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                  </a>
+                </div>
+                {/* Money Transfer Card */}
+                <div className="bg-surface card-shadow hover-lift border-outline-variant flex flex-col items-start gap-6 rounded-2xl border p-8 min-h-[260px]">
+                  <div className="bg-success/10 text-success flex h-16 w-16 items-center justify-center rounded-xl">
+                    <span className="material-symbols-outlined text-[32px]">
+                      payments
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-headline-sm text-headline-sm text-on-surface mb-2">
+                      Money
+                    </h3>
+                    <p className="font-body-sm text-body-sm text-on-surface-variant">
+                      Transferts d'argent rapides et sécurisés pour soutenir vos
+                      proches ou payer vos factures.
+                    </p>
+                  </div>
+                  <a
+                    className="mt-auto inline-flex items-center gap-1 font-bold text-primary transition-all hover:gap-2 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                    href="#"
+                  >
+                    En savoir plus
+                    <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                  </a>
+                </div>
+                {/* Rentals Card */}
+                <div className="bg-surface card-shadow hover-lift border-outline-variant flex flex-col items-start gap-6 rounded-2xl border p-8 min-h-[260px]">
+                  <div className="bg-tertiary-container/10 text-tertiary-container flex h-16 w-16 items-center justify-center rounded-xl">
+                    <span className="material-symbols-outlined text-[32px]">
+                      apartment
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-headline-sm text-headline-sm text-on-surface mb-2">
+                      Rentals
+                    </h3>
+                    <p className="font-body-sm text-body-sm text-on-surface-variant">
+                      Solutions de location de véhicules et d'espaces de
+                      stockage pour vos opérations logistiques.
+                    </p>
+                  </div>
+                  <Link
+                    className="mt-auto inline-flex items-center gap-1 font-bold text-primary transition-all hover:gap-2 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                    to="/vehicles"
+                  >
+                    En savoir plus
+                    <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                  </Link>
+                </div>
+              </div>
+            </section>
+            {/* How It Works */}
+            <section className="bg-inverse-surface text-inverse-on-surface py-24">
+              <div className="max-w-max-width px-margin-desktop mx-auto">
+                <div className="mb-16 flex flex-col items-end justify-between gap-8 lg:flex-row">
+                  <div className="max-w-xl">
+                    <h2 className="font-headline-lg text-headline-lg mb-4 text-white">
+                      Comment ça marche ?
+                    </h2>
+                    <p className="font-body-lg text-body-lg opacity-80">
+                      Notre processus est conçu pour simplifier vos opérations
+                      quotidiennes en quatre étapes simples.
+                    </p>
+                  </div>
+                  <button className="rounded-lg bg-white px-8 py-3 font-bold text-primary transition-colors hover:bg-white/90">
+                    Commencer maintenant
+                  </button>
+                </div>
+                  <div className="gap-gutter-md relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                    {/* Connector Line (Desktop Only) */}
+                    <div className="absolute top-12 left-8 right-8 mx-auto hidden lg:block h-0.5 bg-outline z-0 opacity-30" aria-hidden="true"></div>
+                  {/* Step 1 */}
+                  <div className="relative z-10 space-y-4">
+                    <div className="border-inverse-surface flex h-12 w-12 items-center justify-center rounded-full border-4 bg-primary font-bold text-white">
+                      1
+                    </div>
+                    <h4 className="font-headline-sm text-headline-sm">
+                      Choisissez un service
+                    </h4>
+                    <p className="font-body-sm text-body-sm opacity-70">
+                      Sélectionnez parmi la logistique, les voyages ou les
+                      finances selon vos besoins actuels.
+                    </p>
+                  </div>
+                  {/* Step 2 */}
+                  <div className="relative z-10 space-y-4">
+                    <div className="border-inverse-surface flex h-12 w-12 items-center justify-center rounded-full border-4 bg-primary font-bold text-white">
+                      2
+                    </div>
+                    <h4 className="font-headline-sm text-headline-sm">
+                      Entrez les détails
+                    </h4>
+                    <p className="font-body-sm text-body-sm opacity-70">
+                      Complétez les informations requises de manière simple via
+                      notre interface intuitive.
+                    </p>
+                  </div>
+                  {/* Step 3 */}
+                  <div className="relative z-10 space-y-4">
+                    <div className="border-inverse-surface flex h-12 w-12 items-center justify-center rounded-full border-4 bg-primary font-bold text-white">
+                      3
+                    </div>
+                    <h4 className="font-headline-sm text-headline-sm">
+                      Effectuez le paiement
+                    </h4>
+                    <p className="font-body-sm text-body-sm opacity-70">
+                      Payez en toute sécurité via Mobile Money, carte bancaire
+                      ou compte ADJOUR.
+                    </p>
+                  </div>
+                  {/* Step 4 */}
+                  <div className="relative z-10 space-y-4">
+                    <div className="bg-success border-inverse-surface flex h-12 w-12 items-center justify-center rounded-full border-4 font-bold text-white">
+                      4
+                    </div>
+                    <h4 className="font-headline-sm text-headline-sm">
+                      Suivez en direct
+                    </h4>
+                    <p className="font-body-sm text-body-sm opacity-70">
+                      Recevez des notifications en temps réel et suivez
+                      l'avancement de votre demande.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+            {/* Stats Banner */}
+            <section className="bg-surface border-outline-variant border-y py-16">
+              <div className="max-w-max-width px-margin-desktop gap-gutter-md mx-auto grid grid-cols-2 lg:grid-cols-4">
+                <div className="text-center">
+                  <div className="text-headline-lg font-headline-lg text-primary">
+                    50k+
+                  </div>
+                  <div className="font-label-caps text-label-caps text-on-surface-variant">
+                    Colis livrés
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-headline-lg font-headline-lg text-primary">
+                    120+
+                  </div>
+                  <div className="font-label-caps text-label-caps text-on-surface-variant">
+                    Partenaires globaux
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-headline-lg font-headline-lg text-primary">
+                    24/7
+                  </div>
+                  <div className="font-label-caps text-label-caps text-on-surface-variant">
+                    Support client
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-headline-lg font-headline-lg text-primary">
+                    99.9%
+                  </div>
+                  <div className="font-label-caps text-label-caps text-on-surface-variant">
+                    Fiabilité système
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+          {/* Footer */}
+          <footer className="bg-surface-container-low border-outline-variant border-t pt-20 pb-12">
+            <div className="gap-gutter-md px-margin-desktop max-w-max-width mx-auto grid grid-cols-2 py-12 md:grid-cols-4">
+              {/* Brand Column */}
+              <div className="col-span-2 space-y-6 md:col-span-1">
                 <Link
                   to="/"
-                  className="px-8 py-4 bg-white border-2 border-primary text-primary font-bold rounded-xl hover:bg-primary/5 transition-all flex items-center gap-2"
+                  className="text-headline-sm font-headline-sm font-bold text-primary"
                 >
-                  <span className="material-symbols-outlined">track_changes</span>Suivre un colis
+                  ADJOUR
                 </Link>
-              </div>
-            </div>
-            <div className="relative hidden lg:block">
-              <div className="w-full aspect-square rounded-3xl overflow-hidden shadow-2xl animate-float">
-                <img
-                  className="w-full h-full object-cover"
-                  alt="Illustration numérique moderne et professionnelle présentant un réseau logistique fluide à travers le Cameroun, avec avions cargo, camions de livraison bleu profond et flux de données lumineux reliant les grandes villes."
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvr5AaJA8hZb_LWQbWzcdVQmktB7BmJQm6NEq0RXrtEob0QNuFFwFYnraP5bgYCZ7vheHXPeuKcDb4d9A1q9AbTOR0xkOqvinaphWEzdbqumpEXamgtre1foTVAIJuAvq4iXwuD59jSAfNww21Qe2BrYcfksOIleOzVKmujK8dl8P4BOMrKSnu0OmB-M0bdK0honX_c01zzJeb9c6F4efVBfZS8MtK4-WBRRR9UyajByPEEFEQZtpp"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-        {/* Quick Tracking Bar */}
-        <section className="relative z-20 -mt-10 px-margin-desktop">
-          <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-4 md:p-6 border border-outline-variant">
-            <div className="flex flex-col md:flex-row gap-4 items-stretch">
-              <div className="flex-1 relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">
-                  search
-                </span>
-                <input
-                  className="w-full pl-12 pr-4 py-4 rounded-xl border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-body-lg text-body-lg outline-none"
-                  placeholder="Entrez votre numéro de suivi (ex: ADJ-88293-CM)"
-                  type="text"
-                />
-              </div>
-              <button className="px-10 py-4 bg-tertiary text-white font-bold rounded-xl hover:bg-tertiary-container transition-colors shadow-sm">
-                Suivre maintenant
-              </button>
-            </div>
-            <p className="mt-3 text-center md:text-left font-body-sm text-body-sm text-on-surface-variant">
-              Suivez vos expéditions nationales et internationales en temps réel.
-            </p>
-          </div>
-        </section>
-        {/* Services Bento Grid */}
-        <section className="py-24 max-w-max-width mx-auto px-margin-desktop">
-          <div className="text-center mb-16">
-            <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Nos Services Premium</h2>
-            <p className="text-on-surface-variant font-body-lg text-body-lg max-w-2xl mx-auto">
-              Une suite complète de solutions logistiques et financières adaptées aux besoins des particuliers et des
-              entreprises.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter-md">
-            {/* Shipping Card */}
-            <div className="bg-surface card-shadow p-8 rounded-2xl hover-lift border border-outline-variant flex flex-col items-start gap-6">
-              <div className="w-16 h-16 bg-primary-container/10 text-primary rounded-xl flex items-center justify-center">
-                <span className="material-symbols-outlined text-[32px]">local_shipping</span>
-              </div>
-              <div className="flex-1">
-                <h3 className="font-headline-sm text-headline-sm text-on-surface mb-2">Shipping</h3>
                 <p className="font-body-sm text-body-sm text-on-surface-variant">
-                  Expédition de colis sécurisée, locale et internationale avec suivi de bout en bout.
+                  Propulser l'économie camerounaise grâce à une logistique
+                  intelligente et des services financiers accessibles.
                 </p>
+                <div className="flex gap-4">
+                  <a
+                    className="bg-outline-variant/30 flex h-10 w-10 items-center justify-center rounded-full transition-all hover:bg-primary hover:text-white"
+                    href="#"
+                  >
+                    <span className="material-symbols-outlined text-[20px]">
+                      public
+                    </span>
+                  </a>
+                  <a
+                    className="bg-outline-variant/30 flex h-10 w-10 items-center justify-center rounded-full transition-all hover:bg-primary hover:text-white"
+                    href="#"
+                  >
+                    <span className="material-symbols-outlined text-[20px]">
+                      send
+                    </span>
+                  </a>
+                </div>
               </div>
-              <Link className="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all" to="/shipments/new">
-                En savoir plus <span className="material-symbols-outlined text-sm">arrow_forward</span>
-              </Link>
-            </div>
-            {/* Flights Card */}
-            <div className="bg-surface card-shadow p-8 rounded-2xl hover-lift border border-outline-variant flex flex-col items-start gap-6">
-              <div className="w-16 h-16 bg-secondary-container/10 text-secondary rounded-xl flex items-center justify-center">
-                <span className="material-symbols-outlined text-[32px]">flight</span>
+              {/* Links Column 1 */}
+              <div className="space-y-4">
+                <h5 className="font-label-caps text-label-caps text-on-surface font-bold">
+                  Services
+                </h5>
+                <ul className="space-y-2">
+                  <li>
+                    <Link
+                      className="font-body-sm text-body-sm text-on-surface-variant transition-colors hover:text-secondary"
+                      to="/shipments/new"
+                    >
+                      Shipping
+                    </Link>
+                  </li>
+                  <li>
+                    <a
+                      className="font-body-sm text-body-sm text-on-surface-variant transition-colors hover:text-secondary"
+                      href="#"
+                    >
+                      Travel
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="font-body-sm text-body-sm text-on-surface-variant transition-colors hover:text-secondary"
+                      href="#"
+                    >
+                      Money Transfer
+                    </a>
+                  </li>
+                  <li>
+                    <Link
+                      className="font-body-sm text-body-sm text-on-surface-variant transition-colors hover:text-secondary"
+                      to="/vehicles"
+                    >
+                      Rentals
+                    </Link>
+                  </li>
+                </ul>
               </div>
-              <div className="flex-1">
-                <h3 className="font-headline-sm text-headline-sm text-on-surface mb-2">Travel</h3>
+              {/* Links Column 2 */}
+              <div className="space-y-4">
+                <h5 className="font-label-caps text-label-caps text-on-surface font-bold">
+                  Entreprise
+                </h5>
+                <ul className="space-y-2">
+                  <li>
+                    <a
+                      className="font-body-sm text-body-sm text-on-surface-variant transition-colors hover:text-secondary"
+                      href="#"
+                    >
+                      About Us
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="font-body-sm text-body-sm text-on-surface-variant transition-colors hover:text-secondary"
+                      href="#"
+                    >
+                      Contact
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="font-body-sm text-body-sm text-on-surface-variant transition-colors hover:text-secondary"
+                      href="#"
+                    >
+                      Privacy Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="font-body-sm text-body-sm text-on-surface-variant transition-colors hover:text-secondary"
+                      href="#"
+                    >
+                      Terms of Service
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              {/* Newsletter Column */}
+              <div className="col-span-2 space-y-4 md:col-span-1">
+                <h5 className="font-label-caps text-label-caps text-on-surface font-bold">
+                  Newsletter
+                </h5>
                 <p className="font-body-sm text-body-sm text-on-surface-variant">
-                  Réservation de billets d'avion aux meilleurs tarifs pour vos déplacements pro ou perso.
+                  Inscrivez-vous pour recevoir nos dernières offres.
                 </p>
-              </div>
-              <a className="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all" href="#">
-                En savoir plus <span className="material-symbols-outlined text-sm">arrow_forward</span>
-              </a>
-            </div>
-            {/* Money Transfer Card */}
-            <div className="bg-surface card-shadow p-8 rounded-2xl hover-lift border border-outline-variant flex flex-col items-start gap-6">
-              <div className="w-16 h-16 bg-success/10 text-success rounded-xl flex items-center justify-center">
-                <span className="material-symbols-outlined text-[32px]">payments</span>
-              </div>
-              <div className="flex-1">
-                <h3 className="font-headline-sm text-headline-sm text-on-surface mb-2">Money</h3>
-                <p className="font-body-sm text-body-sm text-on-surface-variant">
-                  Transferts d'argent rapides et sécurisés pour soutenir vos proches ou payer vos factures.
-                </p>
-              </div>
-              <a className="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all" href="#">
-                En savoir plus <span className="material-symbols-outlined text-sm">arrow_forward</span>
-              </a>
-            </div>
-            {/* Rentals Card */}
-            <div className="bg-surface card-shadow p-8 rounded-2xl hover-lift border border-outline-variant flex flex-col items-start gap-6">
-              <div className="w-16 h-16 bg-tertiary-container/10 text-tertiary-container rounded-xl flex items-center justify-center">
-                <span className="material-symbols-outlined text-[32px]">apartment</span>
-              </div>
-              <div className="flex-1">
-                <h3 className="font-headline-sm text-headline-sm text-on-surface mb-2">Rentals</h3>
-                <p className="font-body-sm text-body-sm text-on-surface-variant">
-                  Solutions de location de véhicules et d'espaces de stockage pour vos opérations logistiques.
-                </p>
-              </div>
-              <Link className="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all" to="/vehicles">
-                En savoir plus <span className="material-symbols-outlined text-sm">arrow_forward</span>
-              </Link>
-            </div>
-          </div>
-        </section>
-        {/* How It Works */}
-        <section className="bg-inverse-surface py-24 text-inverse-on-surface">
-          <div className="max-w-max-width mx-auto px-margin-desktop">
-            <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8">
-              <div className="max-w-xl">
-                <h2 className="font-headline-lg text-headline-lg mb-4 text-white">Comment ça marche ?</h2>
-                <p className="font-body-lg text-body-lg opacity-80">
-                  Notre processus est conçu pour simplifier vos opérations quotidiennes en quatre étapes simples.
-                </p>
-              </div>
-              <button className="px-8 py-3 bg-white text-primary font-bold rounded-lg hover:bg-white/90 transition-colors">
-                Commencer maintenant
-              </button>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter-md relative">
-              {/* Connector Line (Desktop Only) */}
-              <div className="hidden lg:block absolute top-12 left-24 right-24 h-0.5 bg-outline opacity-30 z-0"></div>
-              {/* Step 1 */}
-              <div className="relative z-10 space-y-4">
-                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center font-bold text-white border-4 border-inverse-surface">
-                  1
-                </div>
-                <h4 className="font-headline-sm text-headline-sm">Choisissez un service</h4>
-                <p className="font-body-sm text-body-sm opacity-70">
-                  Sélectionnez parmi la logistique, les voyages ou les finances selon vos besoins actuels.
-                </p>
-              </div>
-              {/* Step 2 */}
-              <div className="relative z-10 space-y-4">
-                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center font-bold text-white border-4 border-inverse-surface">
-                  2
-                </div>
-                <h4 className="font-headline-sm text-headline-sm">Entrez les détails</h4>
-                <p className="font-body-sm text-body-sm opacity-70">
-                  Complétez les informations requises de manière simple via notre interface intuitive.
-                </p>
-              </div>
-              {/* Step 3 */}
-              <div className="relative z-10 space-y-4">
-                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center font-bold text-white border-4 border-inverse-surface">
-                  3
-                </div>
-                <h4 className="font-headline-sm text-headline-sm">Effectuez le paiement</h4>
-                <p className="font-body-sm text-body-sm opacity-70">
-                  Payez en toute sécurité via Mobile Money, carte bancaire ou compte ADJOUR.
-                </p>
-              </div>
-              {/* Step 4 */}
-              <div className="relative z-10 space-y-4">
-                <div className="w-12 h-12 rounded-full bg-success flex items-center justify-center font-bold text-white border-4 border-inverse-surface">
-                  4
-                </div>
-                <h4 className="font-headline-sm text-headline-sm">Suivez en direct</h4>
-                <p className="font-body-sm text-body-sm opacity-70">
-                  Recevez des notifications en temps réel et suivez l'avancement de votre demande.
-                </p>
+                <form className="flex flex-col gap-2 sm:flex-row">
+                  <input
+                    className="border-outline-variant text-body-sm w-full rounded-lg border bg-white px-4 py-2 focus:border-primary focus:outline-none"
+                    placeholder="Email"
+                    type="email"
+                    aria-label="Email newsletter"
+                  />
+                  <button
+                    className="rounded-lg bg-primary p-2 text-white hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                    type="submit"
+                  >
+                    <span className="material-symbols-outlined">send</span>
+                  </button>
+                </form>
               </div>
             </div>
-          </div>
-        </section>
-        {/* Stats Banner */}
-        <section className="py-16 bg-surface border-y border-outline-variant">
-          <div className="max-w-max-width mx-auto px-margin-desktop grid grid-cols-2 lg:grid-cols-4 gap-gutter-md">
-            <div className="text-center">
-              <div className="text-headline-lg font-headline-lg text-primary">50k+</div>
-              <div className="font-label-caps text-label-caps text-on-surface-variant">Colis livrés</div>
-            </div>
-            <div className="text-center">
-              <div className="text-headline-lg font-headline-lg text-primary">120+</div>
-              <div className="font-label-caps text-label-caps text-on-surface-variant">Partenaires globaux</div>
-            </div>
-            <div className="text-center">
-              <div className="text-headline-lg font-headline-lg text-primary">24/7</div>
-              <div className="font-label-caps text-label-caps text-on-surface-variant">Support client</div>
-            </div>
-            <div className="text-center">
-              <div className="text-headline-lg font-headline-lg text-primary">99.9%</div>
-              <div className="font-label-caps text-label-caps text-on-surface-variant">Fiabilité système</div>
-            </div>
-          </div>
-        </section>
-      </main>
-      {/* Footer */}
-      <footer className="bg-surface-container-low border-t border-outline-variant pt-20 pb-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-gutter-md px-margin-desktop py-12 max-w-max-width mx-auto">
-          {/* Brand Column */}
-          <div className="col-span-2 md:col-span-1 space-y-6">
-            <Link to="/" className="text-headline-sm font-headline-sm font-bold text-primary">
-              ADJOUR
-            </Link>
-            <p className="font-body-sm text-body-sm text-on-surface-variant">
-              Propulser l'économie camerounaise grâce à une logistique intelligente et des services financiers
-              accessibles.
-            </p>
-            <div className="flex gap-4">
-              <a
-                className="w-10 h-10 rounded-full bg-outline-variant/30 flex items-center justify-center hover:bg-primary hover:text-white transition-all"
-                href="#"
-              >
-                <span className="material-symbols-outlined text-[20px]">public</span>
-              </a>
-              <a
-                className="w-10 h-10 rounded-full bg-outline-variant/30 flex items-center justify-center hover:bg-primary hover:text-white transition-all"
-                href="#"
-              >
-                <span className="material-symbols-outlined text-[20px]">send</span>
-              </a>
-            </div>
-          </div>
-          {/* Links Column 1 */}
-          <div className="space-y-4">
-            <h5 className="font-label-caps text-label-caps text-on-surface font-bold">Services</h5>
-            <ul className="space-y-2">
-              <li>
-                <Link className="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" to="/shipments/new">
-                  Shipping
-                </Link>
-              </li>
-              <li>
-                <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">
-                  Travel
+            <div className="max-w-max-width px-margin-desktop border-outline-variant mx-auto mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 md:flex-row">
+              <p className="font-body-sm text-body-sm text-on-surface-variant opacity-80">
+                © 2026 ADJOUR Platform. All rights reserved.
+              </p>
+              <div className="flex gap-6">
+                <a
+                  className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary"
+                  href="#"
+                >
+                  Conditions d'utilisation
                 </a>
-              </li>
-              <li>
-                <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">
-                  Money Transfer
+                <a
+                  className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary"
+                  href="#"
+                >
+                  Politique de confidentialité
                 </a>
-              </li>
-              <li>
-                <Link className="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" to="/vehicles">
-                  Rentals
-                </Link>
-              </li>
-            </ul>
-          </div>
-          {/* Links Column 2 */}
-          <div className="space-y-4">
-            <h5 className="font-label-caps text-label-caps text-on-surface font-bold">Entreprise</h5>
-            <ul className="space-y-2">
-              <li>
-                <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">
-                  Contact
-                </a>
-              </li>
-              <li>
-                <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">
-                  Terms of Service
-                </a>
-              </li>
-            </ul>
-          </div>
-          {/* Newsletter Column */}
-          <div className="col-span-2 md:col-span-1 space-y-4">
-            <h5 className="font-label-caps text-label-caps text-on-surface font-bold">Newsletter</h5>
-            <p className="font-body-sm text-body-sm text-on-surface-variant">
-              Inscrivez-vous pour recevoir nos dernières offres.
-            </p>
-            <form className="flex gap-2">
-              <input
-                className="flex-1 px-4 py-2 rounded-lg border border-outline-variant bg-white focus:outline-none focus:border-primary text-body-sm"
-                placeholder="Email"
-                type="email"
-              />
-              <button className="p-2 bg-primary text-white rounded-lg hover:brightness-110" type="submit">
-                <span className="material-symbols-outlined">send</span>
-              </button>
-            </form>
-          </div>
+              </div>
+            </div>
+          </footer>
+          {/* FAB for Support */}
+          <button
+            type="button"
+            aria-label="Besoin d'aide"
+            className="bg-secondary-container text-on-secondary-container group fixed right-8 bottom-8 z-50 flex h-16 w-16 items-center justify-center rounded-full shadow-2xl transition-all hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-secondary/40"
+          >
+            <span className="material-symbols-outlined text-[28px]" aria-hidden="true">support_agent</span>
+            <span
+              role="tooltip"
+              className="bg-on-surface text-surface pointer-events-none absolute right-full mr-4 rounded-lg px-4 py-2 text-sm font-bold whitespace-nowrap opacity-0 transition-opacity group-hover:opacity-100 group-focus:opacity-100"
+            >
+              Besoin d'aide ?
+            </span>
+          </button>
         </div>
-        <div className="max-w-max-width mx-auto px-margin-desktop border-t border-outline-variant mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="font-body-sm text-body-sm text-on-surface-variant opacity-80">
-            © 2026 ADJOUR Platform. All rights reserved.
-          </p>
-          <div className="flex gap-6">
-            <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary" href="#">
-              Conditions d'utilisation
-            </a>
-            <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary" href="#">
-              Politique de confidentialité
-            </a>
-          </div>
-        </div>
-      </footer>
-      {/* FAB for Support */}
-      <button className="fixed bottom-8 right-8 w-16 h-16 bg-secondary-container text-on-secondary-container rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 group">
-        <span className="material-symbols-outlined text-[28px]">support_agent</span>
-        <span className="absolute right-full mr-4 bg-on-surface text-surface px-4 py-2 rounded-lg text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-          Besoin d'aide ?
-        </span>
-      </button>
-    </div>
       </div>
     </div>
-    
-
-
-  );
+  )
 }
-    //<div className="flex min-h-svh p-6">
-    //   <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-    //     <div>
-    //       <h1 className="font-medium">Project ready!</h1>
-    //       <p>You may now add components and start building.</p>
-    //       <p>We&apos;ve already added the button component for you.</p>
-    //       <Button className="mt-2">Button</Button>
-    //     </div>
-    //   </div>
-    // </div>
-// import { createFileRoute, Link } from "@tanstack/react-router";
-// import {createFi}
