@@ -4,10 +4,10 @@ interface MapProps {
 
 export function SimpleMap({ address }: MapProps) {
   // On encode l'adresse pour l'URL Google Maps
-  const mapUrl = `https://google.com{encodeURIComponent(address)}&t=&z=13&ie=UTF-8&iwloc=&output=embed`;
+const mapUrl = `https://google.com${encodeURIComponent(address)}&t=&z=13&ie=UTF-8&iwloc=&output=embed`;
 
   return (
-    <div className="w-full aspect-video rounded-xl border bg-muted overflow-hidden shadow-sm">
+    <div className="w-124 aspect-video rounded-xl border bg-muted overflow-hidden shadow-sm">
       <iframe
         title="Google Maps"
         src={mapUrl}

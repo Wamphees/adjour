@@ -28,9 +28,9 @@ export default function Page() {
             <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-4">
               <SectionCards />
               <div className="px-4 lg:px-6">
-                <div className="flex flex-col gap-4 md:gap-6 mb-6">
+                <div className="flex flex-row justify-center gap-2 md:gap-4 mb-6">
                   <ChartBarActive />
-                  <SimpleMap address="Akwa, Douala, Cameroun" />
+                  <SimpleMap address="Douala, Cameroun" />
                 </div>
                 <ChartAreaInteractive />
               </div>
