@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "react-router"
 import type { Route } from "./+types/home"
 import imgHome from "../assets/adjour_livraison_form.png"
@@ -51,6 +51,20 @@ export const Apartment = (props:React.SVGProps<SVGSVGElement>) => (
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false)
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setMenuOpen(false)
+    }
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : ""
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [menuOpen])
   
   return (
     <div className="bg-background">
@@ -108,7 +122,7 @@ export default function Home() {
                 }`}
                 aria-hidden={!menuOpen}
               >
-                <div className="px-margin-desktop max-w-max-width mx-auto flex flex-col gap-2 py-4">
+                <div className="px-4 sm:px-margin-desktop max-w-max-width mx-auto flex flex-col gap-2 py-4">
                   <Link to="/" className="py-2 font-bold text-primary">
                     Home
                   </Link>
@@ -139,41 +153,42 @@ export default function Home() {
           </header>
           <main className="pt-24">
             {/* Hero Section */}
-            <section className="bg-surface-container-low relative overflow-hidden py-10 lg:py-10">
-              
-              <div className="relative z-10 mx-auto grid min-h-screen w-full max-w-7xl grid-cols-1 place-items-center items-center gap-5 px-4 sm:px-6 lg:grid-cols-2 lg:px-8 ml-20">
-                <div className="w-full max-w-md mx-auto -mt-57">
+            <section className="bg-surface-container-low relative overflow-hidden py-12 lg:py-20">
+
+              <div className="relative z-10 mx-auto grid min-h-[50vh] w-full max-w-6xl grid-cols-1 place-items-center items-center gap-6 px-2 sm:px-6 lg:grid-cols-2 lg:px-8">
+                <div className="w-full max-w-xl mx-auto">
                   <span className="bg-primary-container/10 font-label-caps text-label-caps inline-block rounded-full px-3  text-primary">
                     LOGISTIQUE &amp; FINANCE AU CAMEROUN
                   </span>
-                  <h1 className="font-headline-lg font-bold text-headline-lg text-primary lg:text-[56px] lg:leading-[64px]">
-                    Tous&nbsp;vos&nbsp;services<br/> en un clic
+                  <h1 className="font-headline-lg font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[56px] text-primary leading-tight">
+                    Tous vos services en un clic
                   </h1>
                   <p className="text-on-surface-variant font-body-lg text-body-lg max-w-lg">
                     Expédiez vos colis, réservez vos vols et gérez vos finances
                     avec la plateforme la plus fiable. La technologie au service
                     de votre mobilité.
                   </p>
-                  <div className="flex flex-wrap gap-4 pt-4 justify-center lg:justify-start">
+                  <div className="flex flex-col sm:flex-row gap-3 pt-4 justify-center lg:justify-start">
                     <Link
                       to="/shipments/new"
-                      className="text-on-primary flex items-center gap-2 rounded-xl bg-primary px-6 py-3 font-bold shadow-lg transition-transform hover:-translate-y-0.5 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                      className="w-full sm:w-auto text-on-primary flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 font-bold shadow-lg transition-transform hover:-translate-y-0.5 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                     >
-                      <LocalShipping className="material-symbols-outlined">local_shipping</LocalShipping>
+                      <LocalShipping className="material-symbols-outlined" />
                       Expédier un colis
                     </Link>
                     <Link
                       to="/"
-                      className="flex items-center gap-2 rounded-xl border-2 border-primary bg-white px-6 py-3 font-bold text-primary transition-colors hover:bg-primary/5 focus:outline-none focus:ring-2 focus:ring-primary/10"
+                      className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl border-2 border-primary bg-white px-6 py-3 font-bold text-primary transition-colors hover:bg-primary/5 focus:outline-none focus:ring-2 focus:ring-primary/10"
                     >
-                      <TrackChanges className="material-symbols-outlined">track_changes</TrackChanges>
+                      <TrackChanges className="material-symbols-outlined" />
                       Suivre un colis
                     </Link>
                   </div>
                 </div>
-                <div className="hidden h-full w-full lg:block">
-                  <div className="animate-float aspect-square w-100 overflow-hidden rounded-3xl shadow-2xl">
+                <div className="hidden h-100 w-100 lg:block">
+                  <div className="animate-float aspect-square w-full overflow-hidden rounded-3xl shadow-2xl">
                     <img
+                      loading="lazy"
                       className="h-full w-full object-cover"
                       alt="Illustration numérique moderne et professionnelle présentant un réseau logistique fluide à travers le Cameroun, avec avions cargo, camions de livraison bleu profond et flux de données lumineux reliant les grandes villes."
                       src={imgHome}
@@ -183,7 +198,7 @@ export default function Home() {
               </div>
             </section>
             {/* Quick Tracking Bar */}
-            <section className="px-margin-desktop relative z-20 -mt-62">
+            <section className="px-margin-desktop relative z-20 -mt-12">
               <div className="border-outline-variant mx-auto max-w-4xl rounded-2xl border bg-white p-4 shadow-xl md:p-6">
                 <div className="flex flex-col items-stretch gap-4 md:flex-row">
                   <div className="relative flex-1">
@@ -197,7 +212,7 @@ export default function Home() {
                       aria-label="Numéro de suivi"
                     />
                   </div>
-                  <button className="bg-tertiary hover:bg-tertiary-container rounded-xl px-8 py-3 font-bold text-white shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-tertiary/30">
+                  <button className="bg-tertiary hover:bg-tertiary-container rounded-xl px-8 py-3 font-bold text-white shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-tertiary/30 w-full md:w-auto">
                     Suivre maintenant
                   </button>
                 </div>
